@@ -82,12 +82,7 @@ paths:
           description: an existing product already exists
       requestBody:
         $ref: '#/components/requestBodies/Product'
-  
-servers:
-# Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/anon767/product_category_service/1.0.0
-  - url: 'https://virtserver.swaggerhub.com/anon767/HsKA/1.0.0'
+
 components:
   requestBodies:
     Product:
