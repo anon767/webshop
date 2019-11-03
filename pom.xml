@@ -24,7 +24,7 @@
         <java.version>1.8</java.version>
         <fabric.version>0.17.2</fabric.version>
         <springfox-version>2.9.2</springfox-version>
-        <swagger.version>2.4.2</swagger.version>
+        <swagger.version>3.0.13</swagger.version>
         <docker.user>anon767</docker.user>
         <docker.pwd>NOPWDHERE</docker.pwd>
         <mysql.version>8.0.18</mysql.version>
@@ -45,7 +45,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.swagger</groupId>
+            <groupId>io.swagger.codegen.v3</groupId>
             <artifactId>swagger-codegen-maven-plugin</artifactId>
             <version>${swagger.version}</version>
         </dependency>
@@ -86,7 +86,7 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>io.swagger</groupId>
+                        <groupId>io.swagger.codegen.v3</groupId>
                         <artifactId>swagger-codegen-maven-plugin</artifactId>
                         <version>${swagger.version}</version>
                         <executions>
