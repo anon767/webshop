@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  description: product category composite service
+  version: "1.0.0"
+  title: hska webshop API
+  contact:
+    email: bla@thecout.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: product
+    description: Operations available on product entity
+paths:
+  /product/search:
+    get:
+      tags:
+        - product
+      summary: searches products
+      operationId: searchProduct
+      description: Searches for products
+      parameters:
+        - in: query
+          name: description
+          description: description for product or catalog
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: minprice
+          description: minimal price
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: maxprice
+          description: maximal price
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: bad input parameter
+ 
+
+  /product:
+    put:
+      tags:
+        - product
+      summary: updates an product
+      operationId: updateProduct
+      description: updates an product
+      responses:
+        '201':
+          description: product updated
+        '400':
+          description: 'invalid input, object invalid'
+        '404':
+          description: this product does not exist
+      requestBody:
+        $ref: '#/components/requestBodies/Product'
+    post:
+      tags:
+        - product
+      summary: adds an product
+      operationId: addProduct
+      description: Adds an product to the system
+      responses:
+        '201':
+          description: product created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing product already exists
+      requestBody:
+        $ref: '#/components/requestBodies/Product'
+  
+servers:
+# Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/anon767/product_category_service/1.0.0
+  - url: 'https://virtserver.swaggerhub.com/anon767/HsKA/1.0.0'
+components:
+  requestBodies:
+    Product:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Product'
+      description: product item to add
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          example: 0
+        name:
+          type: string
+          example: Cat
+        price:
+          type: number
+          example: 50
+        details:
+          type: string
+          example: fluffy pet
+        category:
+          type: string
+          example: Pet
+    Category:
+      required:
+        - name
+        - id
+      properties:
+        name:
+          type: string
+          example: Pets
+        id:
+          type: integer
+          example: 0
