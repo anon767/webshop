@@ -9,8 +9,8 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
-    <artifactId>category_service</artifactId>
-    <name>category_service</name>
+    <artifactId>role_service</artifactId>
+    <name>role_service</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -44,8 +44,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-            <version>${mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -71,7 +69,31 @@
             </activation>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>io.swagger.codegen.v3</groupId>
+                        <artifactId>swagger-codegen-maven-plugin</artifactId>
+                        <version>${swagger.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+                                    <language>spring</language>
+                                    <apiPackage>com.hska.webshop.role.api</apiPackage>
+                                    <modelPackage>com.hska.webshop.role.api.model</modelPackage>
+                                    <invokerPackage>com.hska.webshop.role.api.handler</invokerPackage>
 
+                                    <configOptions>
+                                        <sourceFolder>swagger</sourceFolder>
+                                        <java8>true</java8>
+                                        <interfaceOnly>true</interfaceOnly>
+                                    </configOptions>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>

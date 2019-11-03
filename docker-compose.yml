@@ -14,8 +14,8 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-  product-core-service:
-    image: anon767/product-core-service
+  product_service:
+    image: anon767/product_service
     restart: always
     ports:
       - 10000:10000
@@ -23,8 +23,8 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-  category-core-service:
-    image: anon767/category-core-service
+  category_service:
+    image: anon767/category_service
     restart: always
     ports:
       - 10000:10000
@@ -32,8 +32,26 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-  product-category-composite-service:
-    image: anon767/product-category-composite-service
+  user_service:
+    image: anon767/user_service
+    restart: always
+    ports:
+      - 10000:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+  role_service:
+    image: anon767/role_service
+    restart: always
+    ports:
+      - 10000:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+  product_category_service:
+    image: anon767/product_category_service
     restart: always
     ports:
       - 10000:10000

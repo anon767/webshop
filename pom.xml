@@ -24,24 +24,28 @@
         <java.version>1.8</java.version>
         <fabric.version>0.17.2</fabric.version>
         <springfox-version>2.9.2</springfox-version>
-        <swagger.version>3.0.13</swagger.version>
+        <swagger.version>2.4.2</swagger.version>
         <docker.user>anon767</docker.user>
         <docker.pwd>NOPWDHERE</docker.pwd>
+        <mysql.version>8.0.18</mysql.version>
         <docker.port>80</docker.port>
         <snippetsDirectory>${project.build.directory}/generated-ascii-doc</snippetsDirectory>
     </properties>
 
     <modules>
-        <module>infrastructure_services/config_service</module>
+       <!-- <module>infrastructure_services/config_service</module>
         <module>core_services/product_service</module>
-        <module>core_services/category_service</module>
         <module>composite_services/product_category_service</module>
         <module>infrastructure_services/frontend_api_service</module>
+        <module>core_services/role_service</module>
+        <module>core_services/user_service</module> -->
+        <module>core_services/category_service</module>
+
     </modules>
 
     <dependencies>
         <dependency>
-            <groupId>io.swagger.codegen.v3</groupId>
+            <groupId>io.swagger</groupId>
             <artifactId>swagger-codegen-maven-plugin</artifactId>
             <version>${swagger.version}</version>
         </dependency>
@@ -71,7 +75,47 @@
 
     <profiles>
         <profile>
-            <id>modules</id>
+            <id>swagger</id>
+            <activation>
+                <file>
+                    <exists>
+                       src/main/resources/api.yaml
+                    </exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-codegen-maven-plugin</artifactId>
+                        <version>${swagger.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+                                    <language>spring</language>
+                                    <apiPackage>com.hska.webshop.${project.name}.api</apiPackage>
+                                    <modelPackage>com.hska.webshop.${project.name}.api.model</modelPackage>
+                                    <invokerPackage>com.hska.webshop.${project.name}.api.handler</invokerPackage>
+                                    <templateDirectory>${maven.multiModuleProjectDirectory}/misc/swagger_templates
+                                    </templateDirectory>
+                                    <output>${project.basedir}/target/generated-sources/</output>
+                                    <configOptions>
+                                        <java8>true</java8>
+                                        <interfaceOnly>true</interfaceOnly>
+                                    </configOptions>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>docker</id>
             <activation>
                 <file>
                     <exists>src</exists>
@@ -79,6 +123,7 @@
             </activation>
             <build>
                 <plugins>
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>

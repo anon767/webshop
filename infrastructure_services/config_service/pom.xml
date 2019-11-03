@@ -7,9 +7,9 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
-    <artifactId>config-service</artifactId>
+    <artifactId>config_service</artifactId>
 
-    <name>config-service</name>
+    <name>config_service</name>
     <description>The config server of the web-shop-microservices project</description>
 
     <properties>
