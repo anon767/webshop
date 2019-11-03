@@ -7,9 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="product_service" />
+        <module name="category_service" />
+        <module name="config-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="category_service" target="1.9" />
       <module name="config-service" target="1.9" />
       <module name="product_service" target="1.9" />
       <module name="web-shop-microservices" target="1.9" />
