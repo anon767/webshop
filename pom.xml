@@ -35,6 +35,7 @@
         <module>infrastructure_services/config_service</module>
         <module>core_services/product_service</module>
         <module>core_services/category_service</module>
+        <module>composite_services/product_category_service</module>
     </modules>
 
     <dependencies>
