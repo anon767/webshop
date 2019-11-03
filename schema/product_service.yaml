@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   description: product category composite service
-  version: "1.0.0"
+  version: "1.0.0-oas3"
   title: hska webshop API
   contact:
     email: bla@thecout.com
@@ -9,48 +9,11 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
+  - name: category
+    description: Operations available on category entity
   - name: product
     description: Operations available on product entity
 paths:
-  /product/search:
-    get:
-      tags:
-        - product
-      summary: searches products
-      operationId: searchProduct
-      description: Searches for products
-      parameters:
-        - in: query
-          name: description
-          description: description for product or catalog
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: minprice
-          description: minimal price
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: maxprice
-          description: maximal price
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'
-        '400':
-          description: bad input parameter
- 
-
   /product:
     put:
       tags:
@@ -82,11 +45,43 @@ paths:
           description: an existing product already exists
       requestBody:
         $ref: '#/components/requestBodies/Product'
-  
+    delete:
+      tags:
+        - product
+      summary: deletes a product
+      operationId: deleteProduct
+      description: deletes an product from the system
+      responses:
+        '201':
+          description: product deleted
+        '400':
+          description: 'invalid input, object invalid'
+    get:
+      tags:
+        - product
+      summary: retrieves product
+      operationId: getProduct
+      description: get a product
+      parameters:
+        - in: query
+          name: id
+          description: the product id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: returns the product
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: bad input parameter
+        '404':
+          description: product not existing
 servers:
-# Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/anon767/product_category_service/1.0.0
   - url: 'https://virtserver.swaggerhub.com/anon767/HsKA/1.0.0'
 components:
   requestBodies:
@@ -117,14 +112,3 @@ components:
         category:
           type: string
           example: Pet
-    Category:
-      required:
-        - name
-        - id
-      properties:
-        name:
-          type: string
-          example: Pets
-        id:
-          type: integer
-          example: 0
