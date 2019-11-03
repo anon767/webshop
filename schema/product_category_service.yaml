@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  description: hska webshop API
+  description: product category composite service
   version: "1.0.0-oas3"
   title: hska webshop API
   contact:
@@ -9,8 +9,6 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: user
-    description: Operations available on user entity
   - name: category
     description: Operations available on category entity
   - name: product
@@ -53,50 +51,7 @@ paths:
                   $ref: '#/components/schemas/Product'
         '400':
           description: bad input parameter
-  /user:
-    get:
-      tags:
-        - user
-      summary: retrieves user
-      operationId: getUser
-      description: get user
-      responses:
-        '201':
-          description: user created
-        '400':
-          description: 'invalid input, object invalid'
-        '409':
-          description: an existing user already exists
-    post:
-      tags:
-        - user
-      summary: creates an user
-      operationId: addUser
-      description: Adds an user to the system
-      responses:
-        '201':
-          description: user created
-        '400':
-          description: 'invalid input, object invalid'
-        '409':
-          description: an existing user already exists
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-        description: user to add
-    delete:
-      tags:
-        - user
-      summary: deletes an user
-      operationId: deleteUser
-      description: deletes an user from the system
-      responses:
-        '201':
-          description: user deleted
-        '400':
-          description: 'invalid input, object invalid'
+ 
   /category:
     get:
       tags:
@@ -253,49 +208,4 @@ components:
           example: Pets
         id:
           type: integer
-          example: 0
-    User:
-      required:
-        - id
-        - firstname
-        - lastname
-        - password
-        - role
-      properties:
-        id:
-          type: integer
-          example: 0
-        firstname:
-          type: string
-          example: tom
-        lastname:
-          type: string
-          example: bismarck
-        password:
-          type: string
-          example: hidden
-        role:
-          type: integer
-          example: 1
-    Role:
-      required:
-        - id
-      properties:
-        id:
-          type: integer
-          example: 0
-        type:
-          type: string
-        level:
-          type: integer
-    LoginRequest:
-      required:
-        - username
-        - password
-      properties:
-        username:
-          type: string
-          example: 0
-        password:
-          type: string
           example: 0
