@@ -1,0 +1,127 @@
+openapi: 3.0.0
+info:
+  description: role core service
+  version: "1.0.0-oas3"
+  title: role core service
+  contact:
+    email: bla@thecout.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: role
+    description: Operations available on role entity
+paths:
+  /roleByLevel:
+    get:
+      tags:
+        - role
+      summary: gets a role by level
+      operationId: getRoleByLevel
+      description: gets a role by its level
+      parameters:
+        - in: query
+          name: level
+          description: the role level
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: returns the role
+        '400':
+          description: 'invalid input, object invalid'
+        '404':
+          description: this role does not exist
+  /role:
+    put:
+      tags:
+        - role
+      summary: updates a role
+      operationId: updateRole
+      description: updates a role
+      responses:
+        '201':
+          description: role updated
+        '400':
+          description: 'invalid input, object invalid'
+        '404':
+          description: this role does not exist
+      requestBody:
+        $ref: '#/components/requestBodies/Role'
+    post:
+      tags:
+        - role
+      summary: adds a role
+      operationId: addRole
+      description: Adds a role to the system
+      responses:
+        '201':
+          description: role created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing role already exists
+      requestBody:
+        $ref: '#/components/requestBodies/Role'
+    delete:
+      tags:
+        - role
+      summary: deletes a role
+      operationId: deleteRole
+      description: deletes a role from the system
+      responses:
+        '201':
+          description: role deleted
+        '400':
+          description: 'invalid input, object invalid'
+    get:
+      tags:
+        - role
+      summary: retrieves role
+      operationId: getRole
+      description: get a role
+      parameters:
+        - in: query
+          name: id
+          description: the role id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: returns the role
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Role'
+        '400':
+          description: bad input parameter
+        '404':
+          description: role not existing
+servers:
+  - url: 'https://virtserver.swaggerhub.com/anon767/HsKA/1.0.0'
+components:
+  requestBodies:
+    Role:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Role'
+      description: role to add
+  schemas:
+    Role:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          example: 0
+        typ:
+          type: string
+          example: Admin
+        level:
+          type: number
+          example: 1

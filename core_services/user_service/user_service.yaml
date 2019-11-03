@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  description: user core service
+  version: "1.0.0-oas3"
+  title: user core service
+  contact:
+    email: bla@thecout.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: user
+    description: Operations available on user entity
+paths:
+  /userByUsername:
+    get:
+      tags:
+        - user
+      summary: gets a user by its username
+      operationId: getUserByUsername
+      description: gets a user by its username
+      parameters:
+        - in: query
+          name: username
+          description: the username
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: returns the user
+        '400':
+          description: 'invalid input, object invalid'
+        '404':
+          description: this user does not exist
+  /user:
+    put:
+      tags:
+        - user
+      summary: updates a user
+      operationId: updateUser
+      description: updates a user
+      responses:
+        '201':
+          description: user updated
+        '400':
+          description: 'invalid input, object invalid'
+        '404':
+          description: this user does not exist
+      requestBody:
+        $ref: '#/components/requestBodies/User'
+    post:
+      tags:
+        - user
+      summary: adds a user
+      operationId: addUser
+      description: Adds a user to the system
+      responses:
+        '201':
+          description: user created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing user already exists
+      requestBody:
+        $ref: '#/components/requestBodies/User'
+    delete:
+      tags:
+        - user
+      summary: deletes a user
+      operationId: deleteUser
+      description: deletes a user from the system
+      responses:
+        '201':
+          description: user deleted
+        '400':
+          description: 'invalid input, object invalid'
+    get:
+      tags:
+        - user
+      summary: retrieves user
+      operationId: getUser
+      description: get a user
+      parameters:
+        - in: query
+          name: id
+          description: the user id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: returns the user
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: bad input parameter
+        '404':
+          description: user not existing
+servers:
+  - url: 'https://virtserver.swaggerhub.com/anon767/HsKA/1.0.0'
+components:
+  requestBodies:
+    User:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+      description: user to add
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - username
+        - firstname
+        - lastname
+        - password
+        - roleId
+      properties:
+        id:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: adminadmin
+        firstname:
+          type: string
+          example: Hans
+        lastname:
+          type: string
+          example: Wurst
+        password:
+          type: string
+          example: geheimgeheim
+        roleId:
+          type: integer
+          example: 1
