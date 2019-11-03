@@ -16,4 +16,6 @@ public class Category extends com.hska.webshop.category_service.api.model.Catego
     public Integer getId() {
         return this.category_id;
     }
+
+
 }

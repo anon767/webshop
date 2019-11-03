@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <docker.port>10100</docker.port>
+        <docker.port>10000</docker.port>
     </properties>
 
     <dependencies>
@@ -59,43 +59,5 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>modules</id>
-            <activation>
-                <file>
-                    <exists>src</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.swagger.codegen.v3</groupId>
-                        <artifactId>swagger-codegen-maven-plugin</artifactId>
-                        <version>${swagger.version}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
-                                    <language>spring</language>
-                                    <apiPackage>com.hska.webshop.product.api</apiPackage>
-                                    <modelPackage>com.hska.webshop.product.api.model</modelPackage>
-                                    <invokerPackage>com.hska.webshop.product.api.handler</invokerPackage>
 
-                                    <configOptions>
-                                        <sourceFolder>swagger</sourceFolder>
-                                        <java8>true</java8>
-                                        <interfaceOnly>true</interfaceOnly>
-                                    </configOptions>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

@@ -51,6 +51,13 @@ paths:
       summary: deletes a product
       operationId: deleteProduct
       description: deletes an product from the system
+      parameters:
+        - in: query
+          name: id
+          description: the product id
+          required: true
+          schema:
+            type: integer
       responses:
         '201':
           description: product deleted

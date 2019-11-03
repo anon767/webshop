@@ -55,6 +55,13 @@ paths:
       summary: deletes a category
       operationId: deleteCategory
       description: deletes an category from the system
+      parameters:
+        - in: query
+          name: id
+          description: the category id
+          required: true
+          schema:
+            type: integer
       responses:
         '201':
           description: category deleted

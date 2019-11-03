@@ -1,7 +1,6 @@
 package com.hska.webshop.category_service.controller;
 
 
-import com.hska.webshop.category_service.api.CategoryApi;
 import com.hska.webshop.category_service.entity.Category;
 import com.hska.webshop.category_service.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-public class CategoryController implements CategoryApi {
+public class CategoryController {
     private final static Logger LOGGER = Logger.getLogger(CategoryController.class.getSimpleName());
 
 
@@ -61,7 +58,7 @@ public class CategoryController implements CategoryApi {
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
         repo.delete(id);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     private boolean validate(Object obj) {
@@ -72,19 +69,4 @@ public class CategoryController implements CategoryApi {
         return str != null && !str.isEmpty();
     }
 
-
-    @Override
-    public Void addCategory(com.hska.webshop.category_service.api.model.Category category, HttpSession httpSession) {
-        return null;
-    }
-
-    @Override
-    public Void deleteCategory(Integer categoryid, HttpSession httpSession) {
-        return null;
-    }
-
-    @Override
-    public List<com.hska.webshop.category_service.api.model.Category> getCategories(HttpSession httpSession) {
-        return null;
-    }
 }
