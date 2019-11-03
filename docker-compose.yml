@@ -1,0 +1,53 @@
+version: '2'
+services:
+  mysqldb:
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: webshop
+      MYSQL_USER: shop
+      MYSQL_PASSWORD: shop
+    image: mariadb/server:10.4
+    restart: always
+    ports:
+      - 3306:3306
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+  product-core-service:
+    image: anon767/product-core-service
+    restart: always
+    ports:
+      - 10000:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+  category-core-service:
+    image: anon767/category-core-service
+    restart: always
+    ports:
+      - 10000:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+  product-category-composite-service:
+    image: anon767/product-category-composite-service
+    restart: always
+    ports:
+      - 10000:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - ./infrastructure_services/rabbitmq_server/rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
