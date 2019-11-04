@@ -51,6 +51,11 @@
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${springfox-version}</version>
         </dependency>
@@ -58,6 +63,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+        <!-- Bean Validation API support -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
         </dependency>
     </dependencies>
 
@@ -97,15 +122,13 @@
                                 <configuration>
                                     <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
                                     <language>spring</language>
-                                    <apiPackage>com.hska.webshop.${project.name}.api</apiPackage>
-                                    <modelPackage>com.hska.webshop.${project.name}.api.model</modelPackage>
-                                    <invokerPackage>com.hska.webshop.${project.name}.api.handler</invokerPackage>
-                                    <templateDirectory>${maven.multiModuleProjectDirectory}/misc/swagger_templates
-                                    </templateDirectory>
+                                    <apiPackage>com.hska.webshop.${project.name}.stub.api</apiPackage>
+                                    <modelPackage>com.hska.webshop.${project.name}.stub.api.model</modelPackage>
+                                    <invokerPackage>com.hska.webshop.${project.name}.stub.api.handler</invokerPackage>
                                     <output>${project.basedir}/target/generated-sources/</output>
                                     <configOptions>
                                         <java8>true</java8>
-                                        <interfaceOnly>true</interfaceOnly>
+                                        <interfaceOnly>false</interfaceOnly>
                                     </configOptions>
                                 </configuration>
                             </execution>
