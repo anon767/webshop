@@ -1,0 +1,4 @@
+{
+    "basePackage":"com.hska.webshop.role",
+    "configPackage":"com.hska.webshop.product.config.role"
+}

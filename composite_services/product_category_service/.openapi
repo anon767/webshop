@@ -1,0 +1,4 @@
+{
+    "basePackage":"com.hska.webshop.product_category",
+    "configPackage":"com.hska.webshop.product_category.config"
+}

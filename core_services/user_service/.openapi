@@ -1,0 +1,4 @@
+{
+    "basePackage":"com.hska.webshop.user",
+    "configPackage":"com.hska.webshop.product.config"
+}
