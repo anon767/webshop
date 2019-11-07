@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,8 +54,8 @@ public class RoleByLevelApiController implements RoleByLevelApi {
     @RequestMapping(value = "/roleByLevel",
         method = RequestMethod.GET)
     public ResponseEntity<List<Role>> getRoleByLevel(@NotNull @ApiParam(value = "the role level", required = true) @Valid @RequestParam(value = "level", required = true) Integer level) {
-        List<Role> roles = new ArrayList<Role>();
-        Iterator<Role> iterator = repository.getRolesByLevel(level).iterator();
+    	List<Role> roles = new ArrayList<Role>();
+    	Iterator<Role> iterator = repository.getRolesByLevel(level).iterator();
         while(iterator.hasNext()) {
         	roles.add(iterator.next());
         }

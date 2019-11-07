@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import javax.persistence.Entity;
@@ -22,8 +21,8 @@ import javax.validation.constraints.*;
 
 @Entity
 public class Role   {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @JsonProperty("id")
   private Integer id;
 
@@ -31,7 +30,7 @@ public class Role   {
   private String typ;
 
   @JsonProperty("level")
-  private BigDecimal level;
+  private Integer level;
 
   public Role id(Integer id) {
     this.id = id;
@@ -74,7 +73,7 @@ public class Role   {
     this.typ = typ;
   }
 
-  public Role level(BigDecimal level) {
+  public Role level(Integer level) {
     this.level = level;
     return this;
   }
@@ -87,11 +86,11 @@ public class Role   {
 
   @Valid
 
-  public BigDecimal getLevel() {
+  public Integer getLevel() {
     return level;
   }
 
-  public void setLevel(BigDecimal level) {
+  public void setLevel(Integer level) {
     this.level = level;
   }
 
