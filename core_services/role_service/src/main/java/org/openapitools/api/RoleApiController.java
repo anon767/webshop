@@ -86,9 +86,9 @@ public class RoleApiController implements RoleApi {
     }
 
 
-    @ApiOperation(value = "retrieves role", nickname = "getRole", notes = "get a role", response = Role.class, responseContainer = "List", tags={ "role", })
+    @ApiOperation(value = "retrieves role", nickname = "getRole", notes = "get a role", response = Role.class, tags={ "role", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "returns the role", response = Role.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "returns the role", response = Role.class),
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 404, message = "role not existing") })
     @RequestMapping(value = "/role",

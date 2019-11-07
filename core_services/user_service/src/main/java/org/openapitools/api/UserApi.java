@@ -62,15 +62,15 @@ public interface UserApi {
     }
 
 
-    @ApiOperation(value = "retrieves user", nickname = "getUser", notes = "get a user", response = User.class, responseContainer = "List", tags={ "user", })
+    @ApiOperation(value = "retrieves user", nickname = "getUser", notes = "get a user", response = User.class, tags={ "user", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "returns the user", response = User.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "returns the user", response = User.class),
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 404, message = "user not existing") })
     @RequestMapping(value = "/user",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<User>> getUser(@NotNull @ApiParam(value = "the user id", required = true) @Valid @RequestParam(value = "id", required = true) Integer id) {
+    default ResponseEntity<User> getUser(@NotNull @ApiParam(value = "the user id", required = true) @Valid @RequestParam(value = "id", required = true) Integer id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
