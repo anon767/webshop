@@ -40,6 +40,8 @@
         <module>core_services/role_service</module>
         <module>core_services/user_service</module>
         <module>core_services/category_service</module>
+        <module>infrastructure_services/discovery_service</module>
+        <module>infrastructure_services/api_gateway_service</module>
 
     </modules>
 
@@ -99,45 +101,45 @@
     </dependencyManagement>
 
     <profiles>
-      <!--  <profile>
-            <id>swagger</id>
-            <activation>
-                <file>
-                    <exists>
-                        src/main/resources/api.yaml
-                    </exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.swagger.codegen.v3</groupId>
-                        <artifactId>swagger-codegen-maven-plugin</artifactId>
-                        <version>${swagger.version}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
-                                    <language>spring</language>
-                                    <apiPackage>com.hska.webshop.${project.name}.stub.api</apiPackage>
-                                    <modelPackage>com.hska.webshop.${project.name}.stub.api.model</modelPackage>
-                                    <invokerPackage>com.hska.webshop.${project.name}.stub.api.handler</invokerPackage>
-                                    <output>${project.basedir}/target/generated-sources/</output>
-                                    <configOptions>
-                                        <java8>true</java8>
-                                        <interfaceOnly>false</interfaceOnly>
-                                    </configOptions>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile> -->
-<!--        <profile>
+        <!--  <profile>
+              <id>swagger</id>
+              <activation>
+                  <file>
+                      <exists>
+                          src/main/resources/api.yaml
+                      </exists>
+                  </file>
+              </activation>
+              <build>
+                  <plugins>
+                      <plugin>
+                          <groupId>io.swagger.codegen.v3</groupId>
+                          <artifactId>swagger-codegen-maven-plugin</artifactId>
+                          <version>${swagger.version}</version>
+                          <executions>
+                              <execution>
+                                  <goals>
+                                      <goal>generate</goal>
+                                  </goals>
+                                  <configuration>
+                                      <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+                                      <language>spring</language>
+                                      <apiPackage>com.hska.webshop.${project.name}.stub.api</apiPackage>
+                                      <modelPackage>com.hska.webshop.${project.name}.stub.api.model</modelPackage>
+                                      <invokerPackage>com.hska.webshop.${project.name}.stub.api.handler</invokerPackage>
+                                      <output>${project.basedir}/target/generated-sources/</output>
+                                      <configOptions>
+                                          <java8>true</java8>
+                                          <interfaceOnly>false</interfaceOnly>
+                                      </configOptions>
+                                  </configuration>
+                              </execution>
+                          </executions>
+                      </plugin>
+                  </plugins>
+              </build>
+          </profile> -->
+        <profile>
             <id>docker</id>
             <activation>
                 <file>
@@ -187,7 +189,7 @@
                                     <alias>${project.name}</alias>
                                     <name>${docker.user}/${project.artifactId}</name>
                                     <build>
-                                        <from>openjdk:8-jre-alpine</from>
+                                        <from>openjdk:9</from>
                                         <tags>
                                             <tag>latest</tag>
                                         </tags>
@@ -236,7 +238,7 @@
                 </plugins>
             </build>
         </profile>
-    --></profiles>
+    </profiles>
 
     <build>
         <plugins>

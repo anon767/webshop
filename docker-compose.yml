@@ -6,7 +6,7 @@ services:
       MYSQL_DATABASE: webshop
       MYSQL_USER: shop
       MYSQL_PASSWORD: shop
-    image: mariadb/server:10.4
+    image: mysql/mysql-server:5.7
     restart: always
     ports:
       - 3306:3306
@@ -18,7 +18,7 @@ services:
     image: anon767/product_service
     restart: always
     ports:
-      - 10000:10000
+      - 10001:10000
     logging:
       options:
         max-size: 10m
@@ -27,25 +27,7 @@ services:
     image: anon767/category_service
     restart: always
     ports:
-      - 10000:10000
-    logging:
-      options:
-        max-size: 10m
-        max-file: '10'
-  user_service:
-    image: anon767/user_service
-    restart: always
-    ports:
-      - 10000:10000
-    logging:
-      options:
-        max-size: 10m
-        max-file: '10'
-  role_service:
-    image: anon767/role_service
-    restart: always
-    ports:
-      - 10000:10000
+      - 10002:10000
     logging:
       options:
         max-size: 10m
@@ -54,18 +36,36 @@ services:
     image: anon767/product_category_service
     restart: always
     ports:
-      - 10000:10000
+      - 10003:10000
     logging:
       options:
         max-size: 10m
         max-file: '10'
-  rabbitmq:
-    image: "rabbitmq:3-management"
-    hostname: "rabbit"
+  discovery_service:
+    image: anon767/discovery_service
+    restart: always
     ports:
-      - "15672:15672"
-      - "5672:5672"
-    labels:
-      NAME: "rabbitmq"
-    volumes:
-      - ./infrastructure_services/rabbitmq_server/rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
+      - 10004:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+
+  api_gateway_service:
+    image: anon767/api_gateway_service
+    restart: always
+    ports:
+      - 10005:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+  config_service:
+    image: anon767/config_service
+    restart: always
+    ports:
+      - 10006:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'

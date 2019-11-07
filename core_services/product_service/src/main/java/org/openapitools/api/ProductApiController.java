@@ -95,6 +95,17 @@ public class ProductApiController implements ProductApi {
         return new ResponseEntity<>(List.of(product), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "retrieves all products", nickname = "getAllProduct", notes = "gets all products", response = Product.class, responseContainer = "List", tags = {"product",})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "returns products", response = Product.class, responseContainer = "List"),
+            @ApiResponse(code = 400, message = "bad input parameter"),
+            @ApiResponse(code = 404, message = "product not existing")})
+    @RequestMapping(value = "/product/getAll",
+            produces = {"application/json"},
+            method = RequestMethod.GET)
+    public ResponseEntity<List<Product>> getAllProducts() {
+        return new ResponseEntity<>((List<Product>) repository.findAll(), HttpStatus.OK);
+    }
 
     @ApiOperation(value = "updates an product", nickname = "updateProduct", notes = "updates an product", tags = {"product",})
     @ApiResponses(value = {
