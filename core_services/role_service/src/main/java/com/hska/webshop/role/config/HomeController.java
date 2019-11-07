@@ -1,4 +1,4 @@
-package com.hska.webshop.product.config;
+package com.hska.webshop.role.config;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

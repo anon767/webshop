@@ -70,7 +70,7 @@ public interface RoleApi {
     @RequestMapping(value = "/role",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<Role>> getRole(@NotNull @ApiParam(value = "the role id", required = true) @Valid @RequestParam(value = "id", required = true) Integer id) {
+    default ResponseEntity<Role> getRole(@NotNull @ApiParam(value = "the role id", required = true) @Valid @RequestParam(value = "id", required = true) Integer id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

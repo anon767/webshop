@@ -6,6 +6,8 @@
 package org.openapitools.api;
 
 import io.swagger.annotations.*;
+
+import org.openapitools.model.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +44,7 @@ public interface RoleByLevelApi {
         @ApiResponse(code = 404, message = "this role does not exist") })
     @RequestMapping(value = "/roleByLevel",
         method = RequestMethod.GET)
-    default ResponseEntity<Void> getRoleByLevel(@NotNull @ApiParam(value = "the role level", required = true) @Valid @RequestParam(value = "level", required = true) Integer level) {
+    default ResponseEntity<List<Role>> getRoleByLevel(@NotNull @ApiParam(value = "the role level", required = true) @Valid @RequestParam(value = "level", required = true) Integer level) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

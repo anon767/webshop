@@ -137,7 +137,7 @@
                 </plugins>
             </build>
         </profile> -->
-        <profile>
+<!--        <profile>
             <id>docker</id>
             <activation>
                 <file>
@@ -236,7 +236,7 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
+    --></profiles>
 
     <build>
         <plugins>

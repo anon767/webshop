@@ -1,4 +1,4 @@
-package com.hska.webshop.product.config;
+package com.hska.webshop.role.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
