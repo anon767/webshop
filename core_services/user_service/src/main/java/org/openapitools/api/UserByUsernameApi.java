@@ -6,6 +6,8 @@
 package org.openapitools.api;
 
 import io.swagger.annotations.*;
+
+import org.openapitools.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +44,7 @@ public interface UserByUsernameApi {
         @ApiResponse(code = 404, message = "this user does not exist") })
     @RequestMapping(value = "/userByUsername",
         method = RequestMethod.GET)
-    default ResponseEntity<Void> getUserByUsername(@NotNull @ApiParam(value = "the username", required = true) @Valid @RequestParam(value = "username", required = true) String username) {
+    default ResponseEntity<User> getUserByUsername(@NotNull @ApiParam(value = "the username", required = true) @Valid @RequestParam(value = "username", required = true) String username) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

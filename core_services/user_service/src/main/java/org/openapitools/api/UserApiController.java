@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.NativeWebRequest;
 
-//import com.hska.webshop.user.repository.UserRepository;
+import com.hska.webshop.user.repository.UserRepository;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,8 +30,8 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("${openapi.userCoreService.base-path:/anon767/HsKA/1.0.0}")
 public class UserApiController implements UserApi {
 
-	//@Autowired
-	//private UserRepository repository;
+	@Autowired
+	private UserRepository repository;
     private final NativeWebRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
@@ -44,7 +44,6 @@ public class UserApiController implements UserApi {
         return Optional.ofNullable(request);
     }
 
-/*
     @ApiOperation(value = "adds a user", nickname = "addUser", notes = "Adds a user to the system", tags={ "user", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "user created"),
@@ -124,5 +123,4 @@ public class UserApiController implements UserApi {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    */
 }
