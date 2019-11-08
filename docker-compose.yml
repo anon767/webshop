@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 services:
   mysqldb:
     environment:
@@ -7,6 +7,10 @@ services:
       MYSQL_USER: shop
       MYSQL_PASSWORD: shop
     image: mysql/mysql-server:5.7
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+      - "./.data/mysql:/var/run/mysqld"
+      - './data/mysqld.cnf:/etc/alternatives/my.cnf'
     restart: always
     ports:
       - 3306:3306
@@ -14,7 +18,7 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-  product_service:
+  product-service:
     image: anon767/product_service
     restart: always
     ports:
@@ -23,7 +27,16 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-  category_service:
+    depends_on:
+      - mysqldb
+      - config-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:10000"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  category-service:
     image: anon767/category_service
     restart: always
     ports:
@@ -32,7 +45,16 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-  product_category_service:
+    depends_on:
+      - mysqldb
+      - config-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:10000"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  product-category-service:
     image: anon767/product_category_service
     restart: always
     ports:
@@ -41,7 +63,13 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-  discovery_service:
+    depends_on:
+      - mysqldb
+      - config-service
+      - category-service
+      - product-service
+
+  discovery-service:
     image: anon767/discovery_service
     restart: always
     ports:
@@ -50,8 +78,10 @@ services:
       options:
         max-size: 10m
         max-file: '10'
+    depends_on:
+      - config-service
 
-  api_gateway_service:
+  api-gateway-service:
     image: anon767/api_gateway_service
     restart: always
     ports:
@@ -60,7 +90,10 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-  config_service:
+    depends_on:
+      - config-service
+
+  config-service:
     image: anon767/config_service
     restart: always
     ports:
@@ -69,3 +102,8 @@ services:
       options:
         max-size: 10m
         max-file: '10'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:10000"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
