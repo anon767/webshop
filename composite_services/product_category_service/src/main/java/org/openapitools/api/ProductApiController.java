@@ -129,14 +129,16 @@ public class ProductApiController implements ProductApi {
     }
 
     public List<Product> getProductByNameAndMinMaxPrice(String name, float minPrice, float maxPrice) {
-        return ((List<Product>) this.productClient.getAllProducts())
+        return ((List<Product>) this.productClient.getAllProducts().getBody())
                 .stream()
-                .filter(product -> product.getName().contains(name) && product.getPrice().floatValue() >= minPrice && product.getPrice().floatValue() <= maxPrice)
+                .filter(product -> product.getName().contains(name) &&
+                        product.getPrice().floatValue() >= minPrice &&
+                        product.getPrice().floatValue() <= maxPrice)
                 .collect(Collectors.toList());
     }
 
     public Category getCategoryByName(String name) {
-        return ((List<Category>) this.categoryClient.getCategories())
+        return ((List<Category>) this.categoryClient.getCategories().getBody())
                 .stream()
                 .filter(category -> category.getName().equals(name))
                 .collect(Collectors.toList()).get(0);

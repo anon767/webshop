@@ -74,6 +74,7 @@ services:
     restart: always
     ports:
       - 10004:10000
+      - 10090:10008
     logging:
       options:
         max-size: 10m
@@ -86,6 +87,7 @@ services:
     restart: always
     ports:
       - 10005:10000
+      - 10080:10008
     logging:
       options:
         max-size: 10m
