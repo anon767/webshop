@@ -68,8 +68,8 @@ public class ProductApiController implements ProductApi {
         if (category == null || !validateCategory(category) || !validateProduct(product)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        productClient.addProduct(product);
-        return new ResponseEntity<>(HttpStatus.OK);
+
+        return new ResponseEntity<>(productClient.addProduct(product).getStatusCode());
     }
 
 

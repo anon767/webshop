@@ -23,7 +23,6 @@
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-zuul:1.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-ribbon:1.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:1.4.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.retry:spring-retry:1.1.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.netflix.ribbon:ribbon:2.2.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.netflix.ribbon:ribbon-transport:2.2.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.reactivex:rxnetty-contexts:0.4.9" level="project" />
@@ -248,5 +247,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.4" level="project" />
     <orderEntry type="library" name="Maven: org.openapitools:jackson-databind-nullable:0.1.0" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.retry:spring-retry:1.1.4.RELEASE" level="project" />
   </component>
 </module>
