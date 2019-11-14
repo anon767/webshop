@@ -18,6 +18,22 @@ services:
       options:
         max-size: 10m
         max-file: '10'
+
+  config-service:
+    image: anon767/config_service
+    restart: always
+    ports:
+      - 10006:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:10000"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   product-service:
     image: anon767/product_service
     restart: always
@@ -95,17 +111,3 @@ services:
     depends_on:
       - config-service
 
-  config-service:
-    image: anon767/config_service
-    restart: always
-    ports:
-      - 10006:10000
-    logging:
-      options:
-        max-size: 10m
-        max-file: '10'
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10000"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3

@@ -84,11 +84,15 @@ public class ProductApiController implements ProductApi {
         float minPrice = 0;
         float maxPrice = Float.MAX_VALUE;
         try {
-            minPrice = Float.parseFloat(minprice);
+            if (minprice != null) {
+                minPrice = Float.parseFloat(minprice);
+            }
         } catch (NumberFormatException e) {
         }
         try {
-            maxPrice = Float.parseFloat(maxprice);
+            if (maxprice != null) {
+                maxPrice = Float.parseFloat(maxprice);
+            }
         } catch (NumberFormatException e) {
         }
         List<Product> products = this.getProductByNameAndMinMaxPrice(description, minPrice, maxPrice);

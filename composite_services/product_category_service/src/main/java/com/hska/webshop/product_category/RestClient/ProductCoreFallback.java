@@ -17,14 +17,14 @@ public class ProductCoreFallback implements ProductCoreRestClient {
 
     @Override
     public ResponseEntity<Void> addProduct(Product product) {
-        ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         response.getHeaders().add("Fallback", FALLBACK_TEXT);
         return response;
     }
 
     @Override
     public ResponseEntity<Void> updateProduct(Product product) {
-        ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         response.getHeaders().add("Fallback", FALLBACK_TEXT);
         return response;
     }
@@ -38,7 +38,7 @@ public class ProductCoreFallback implements ProductCoreRestClient {
 
     @Override
     public ResponseEntity<Void> deleteProduct(Integer id) {
-        ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         response.getHeaders().add("Fallback", FALLBACK_TEXT);
         return response;
     }
