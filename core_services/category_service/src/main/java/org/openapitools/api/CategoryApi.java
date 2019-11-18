@@ -73,7 +73,7 @@ public interface CategoryApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"name\" : \"Pets\",  \"id\" : 0}");
+                    ApiUtil.setExampleResponse(request, "application/json", "{  \"name\" : \"Pet\",  \"id\" : 0}");
                     break;
                 }
             }

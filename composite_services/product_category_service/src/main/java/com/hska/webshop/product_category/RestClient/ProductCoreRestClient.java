@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @FeignClient(name = "product-service", fallback = ProductCoreFallback.class, decode404 = true)
 public interface ProductCoreRestClient {
     @RequestMapping(value = "/product/getAll", method = RequestMethod.GET)
-    ResponseEntity<Iterable<Product>> getAllProducts();
+    ResponseEntity<List<Product>> getAllProducts();
 
     @RequestMapping(value = "/product", method = RequestMethod.POST)
     ResponseEntity<Void> addProduct(@RequestBody Product product);

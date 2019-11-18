@@ -4,13 +4,16 @@ import org.openapitools.model.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductCoreFallback implements ProductCoreRestClient {
 
     private static final String FALLBACK_TEXT = "product_service not found";
 
     @Override
-    public ResponseEntity<Iterable<Product>> getAllProducts() {
-        ResponseEntity<Iterable<Product>> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<List<Product>> getAllProducts() {
+        ResponseEntity<List<Product>> response = new ResponseEntity<>(new ArrayList<>(), HttpStatus.NOT_FOUND);
         response.getHeaders().add("Fallback", FALLBACK_TEXT);
         return response;
     }

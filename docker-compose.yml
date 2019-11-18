@@ -10,7 +10,7 @@ services:
     volumes:
       - "./.data/db:/var/lib/mysql"
       - "./.data/mysql:/var/run/mysqld"
-      - './data/mysqld.cnf:/etc/alternatives/my.cnf'
+      - './.data/mysqld.cnf:/etc/alternatives/my.cnf'
     restart: always
     ports:
       - 3306:3306
@@ -28,11 +28,6 @@ services:
       options:
         max-size: 10m
         max-file: '10'
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10000"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
 
   product-service:
     image: anon767/product_service

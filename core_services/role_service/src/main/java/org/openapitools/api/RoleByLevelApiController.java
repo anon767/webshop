@@ -23,7 +23,7 @@ import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-04T10:11:51.764806+01:00[Europe/Berlin]")
 
 @Controller
-@RequestMapping("${openapi.roleCoreService.base-path:/anon767/HsKA/1.0.0}")
+@RequestMapping("${openapi.roleCoreService.base-path:}")
 public class RoleByLevelApiController implements RoleByLevelApi {
 
     private final NativeWebRequest request;

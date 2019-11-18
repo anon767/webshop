@@ -83,6 +83,9 @@ public class ProductApiController implements ProductApi {
     public ResponseEntity<List<Product>> searchProduct(@ApiParam(value = "description for product or catalog") @Valid @RequestParam(value = "description", required = false) String description, @ApiParam(value = "minimal price") @Valid @RequestParam(value = "minprice", required = false) String minprice, @ApiParam(value = "maximal price") @Valid @RequestParam(value = "maxprice", required = false) String maxprice) {
         float minPrice = 0;
         float maxPrice = Float.MAX_VALUE;
+        if (description == null) {
+            description = "";
+        }
         try {
             if (minprice != null) {
                 minPrice = Float.parseFloat(minprice);
@@ -133,9 +136,10 @@ public class ProductApiController implements ProductApi {
     }
 
     public List<Product> getProductByNameAndMinMaxPrice(String name, float minPrice, float maxPrice) {
+        System.out.println(this.productClient.getAllProducts().getBody().toString());
         return ((List<Product>) this.productClient.getAllProducts().getBody())
                 .stream()
-                .filter(product -> product.getName().contains(name) &&
+                .filter(product -> product.getName().contains(name.trim()) &&
                         product.getPrice().floatValue() >= minPrice &&
                         product.getPrice().floatValue() <= maxPrice)
                 .collect(Collectors.toList());
