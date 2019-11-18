@@ -36,7 +36,7 @@ public class OpenAPIDocumentationConfig {
     }
 
     @Bean
-    public Docket customImplementation(ServletContext servletContext, @Value("${openapi.userCoreService.base-path:/anon767/HsKA/1.0.0}") String basePath) {
+    public Docket customImplementation(ServletContext servletContext, @Value("${openapi.userCoreService.base-path:}") String basePath) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                     .apis(RequestHandlerSelectors.basePackage("org.openapitools.api"))
