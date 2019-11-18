@@ -139,7 +139,7 @@ public class ProductApiController implements ProductApi {
         System.out.println(this.productClient.getAllProducts().getBody().toString());
         return ((List<Product>) this.productClient.getAllProducts().getBody())
                 .stream()
-                .filter(product -> product.getName().contains(name.trim()) &&
+                .filter(product -> (product.getName().contains(name.trim()) || product.getDetails().contains(name.trim())) &&
                         product.getPrice().floatValue() >= minPrice &&
                         product.getPrice().floatValue() <= maxPrice)
                 .collect(Collectors.toList());
