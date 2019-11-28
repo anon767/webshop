@@ -36,12 +36,12 @@
         <module>infrastructure_services/config_service</module>
         <module>core_services/product_service</module>
         <module>composite_services/product_category_service</module>
-        <module>infrastructure_services/frontend_api_service</module>
         <module>core_services/role_service</module>
         <module>core_services/user_service</module>
         <module>core_services/category_service</module>
         <module>infrastructure_services/discovery_service</module>
         <module>infrastructure_services/api_gateway_service</module>
+        <module>infrastructure_services/webshop-ui</module>
     </modules>
 
     <dependencies>

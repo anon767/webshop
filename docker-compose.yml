@@ -65,6 +65,44 @@ services:
       timeout: 10s
       retries: 3
 
+  user-service:
+    image: anon767/user_service
+    restart: always
+    ports:
+      - 10007:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+    depends_on:
+      - mysqldb
+      - config-service
+  role-service:
+    image: anon767/role_service
+    restart: always
+    ports:
+      - 10008:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+    depends_on:
+      - mysqldb
+      - config-service
+
+  ui-service:
+    image: anon767/ui_service
+    restart: always
+    ports:
+      - 10009:10000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10'
+    depends_on:
+      - mysqldb
+      - config-service
+
   product-category-service:
     image: anon767/product_category_service
     restart: always
