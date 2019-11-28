@@ -1,24 +1,5 @@
 version: '2.1'
 services:
-  mysqldb:
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: webshop
-      MYSQL_USER: shop
-      MYSQL_PASSWORD: shop
-    image: mysql/mysql-server:5.7
-    volumes:
-      - "./.data/db:/var/lib/mysql"
-      - "./.data/mysql:/var/run/mysqld"
-      - './.data/mysqld.cnf:/etc/alternatives/my.cnf'
-    restart: always
-    ports:
-      - 3306:3306
-    logging:
-      options:
-        max-size: 10m
-        max-file: '10'
-
   config-service:
     image: anon767/config_service
     restart: always
@@ -39,7 +20,6 @@ services:
         max-size: 10m
         max-file: '10'
     depends_on:
-      - mysqldb
       - config-service
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:10000"]
@@ -57,7 +37,6 @@ services:
         max-size: 10m
         max-file: '10'
     depends_on:
-      - mysqldb
       - config-service
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:10000"]
@@ -65,30 +44,31 @@ services:
       timeout: 10s
       retries: 3
 
-  user-service:
-    image: anon767/user_service
-    restart: always
-    ports:
-      - 10007:10000
-    logging:
-      options:
-        max-size: 10m
-        max-file: '10'
-    depends_on:
-      - mysqldb
-      - config-service
-  role-service:
-    image: anon767/role_service
-    restart: always
-    ports:
-      - 10008:10000
-    logging:
-      options:
-        max-size: 10m
-        max-file: '10'
-    depends_on:
-      - mysqldb
-      - config-service
+  #user-service:
+  #  image: anon767/user_service
+  #  restart: always
+  #  ports:
+  #    - 10007:10000
+  #  logging:
+  #    options:
+  #      max-size: 10m
+  #      max-file: '10'
+  #  depends_on:
+  #    - mysqldb
+  #    - config-service
+
+#  role-service:
+#    image: anon767/role_service
+#    restart: always
+#    ports:
+#      - 10008:10000
+#    logging:
+#      options:
+#        max-size: 10m
+#        max-file: '10'
+#    depends_on:
+#      - mysqldb
+#      - config-service
 
   ui-service:
     image: anon767/ui_service
@@ -100,7 +80,6 @@ services:
         max-size: 10m
         max-file: '10'
     depends_on:
-      - mysqldb
       - config-service
 
   product-category-service:
@@ -113,7 +92,6 @@ services:
         max-size: 10m
         max-file: '10'
     depends_on:
-      - mysqldb
       - config-service
       - category-service
       - product-service
