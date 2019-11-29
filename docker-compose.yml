@@ -70,17 +70,14 @@ services:
 #      - mysqldb
 #      - config-service
 
-  ui-service:
-    image: anon767/ui_service
-    restart: always
+  webshop-ui:
+    build:
+      context: ./infrastructure_services/webshop-ui/
+      dockerfile: ./conf/Dockerfile
     ports:
-      - 10009:10000
-    logging:
-      options:
-        max-size: 10m
-        max-file: '10'
+      - "10009:8080"
     depends_on:
-      - config-service
+      - product-category-service
 
   product-category-service:
     image: anon767/product_category_service

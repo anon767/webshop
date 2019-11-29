@@ -151,6 +151,7 @@
             <activation>
                 <file>
                     <exists>src</exists>
+                    <missing>conf/Dockerfile</missing>
                 </file>
             </activation>
             <build>
