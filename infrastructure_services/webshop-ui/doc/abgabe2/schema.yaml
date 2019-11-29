@@ -1,0 +1,362 @@
+wagger: '2.0'
+info:
+  description: hska webshop API
+  version: 1.0.0
+  title: Simple webshop API
+  # put the contact info for your development or API team
+  contact:
+    email: bla@thecout.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: user
+  description: Operations available on user entity
+- name: category
+  description: Operations available on category entity
+- name: product
+  description: Operations available on product entity
+  
+paths:
+  /product/search:
+    get:
+      tags:
+      - product
+      summary: searches products
+      operationId: searchProduct
+      description: Searches for products
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: description
+        description: description for product or catalog
+        required: false
+        type: string
+      - in: query
+        name: minprice
+        description: minimal price
+        required: false
+        type: string
+      - in: query
+        name: maxprice
+        description: maximal price
+        required: false
+        type: string
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        400:
+          description: bad input parameter
+  /user:
+    get:
+      tags:
+      - user
+      summary: retrieves user
+      operationId: getUser
+      description: get user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: username
+        schema:
+          type: string
+      responses:
+        201:
+          description: user created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing user already exists
+    post:
+      tags:
+      - user
+      summary: creates an user 
+      operationId: addUser
+      description: Adds an user to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: user
+        description: user to add
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        201:
+          description: user created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing user already exists
+    delete:
+      tags:
+      - user
+      summary: deletes an user 
+      operationId: deleteUser
+      description: deletes an user from the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userid
+        description: user to delete
+        schema:
+          type: integer
+      responses:
+        201:
+          description: user deleted
+        400:
+          description: invalid input, object invalid
+  /category: 
+    get:
+      tags:
+      - category
+      summary: retrieves all categories
+      operationId: getCategories
+      description: get all categories
+      produces:
+      - application/json
+      responses:
+        200:
+          description: get all categories
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        400:
+          description: bad input parameter
+    post:
+      tags:
+      - category
+      summary: adds an category 
+      operationId: addCategory
+      description: Adds an category to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: category
+        description: category item to add
+        schema:
+          $ref: '#/definitions/Category'
+      responses:
+        201:
+          description: category created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing category already exists
+    delete:
+      tags:
+      - category
+      summary: deletes a category 
+      operationId: deleteCategory
+      description: deletes an category from the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: categoryid
+        description: category to delete
+        schema:
+          type: integer
+      responses:
+        201:
+          description: category deleted
+        400:
+          description: invalid input, object invalid
+        
+  /product: 
+    put:
+      tags:
+      - product
+      summary: updates an product 
+      operationId: updateProduct
+      description: updates an product
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: product
+        description: product item to add
+        schema:
+          $ref: '#/definitions/Product'
+      responses:
+        201:
+          description: product updated
+        400:
+          description: invalid input, object invalid
+        404:
+          description: this product does not exist
+    post:
+      tags:
+      - product
+      summary: adds an product 
+      operationId: addProduct
+      description: Adds an product to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: product
+        description: product item to add
+        schema:
+          $ref: '#/definitions/Product'
+      responses:
+        201:
+          description: product created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing product already exists
+    delete:
+      tags:
+      - product
+      summary: deletes a product 
+      operationId: deleteProduct
+      description: deletes an product from the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: productid
+        description: product to delete
+        schema:
+          type: integer
+      responses:
+        201:
+          description: product deleted
+        400:
+          description: invalid input, object invalid
+    get:
+        tags:
+        - product
+        summary: retrieves product
+        operationId: getProduct
+        description: get a product
+        produces:
+        - application/json
+        parameters:
+        - in: query
+          name: id
+          description: the product id
+          required: true
+          type: integer
+        responses:
+          200:
+            description: returns the product
+            schema:
+              items:
+                $ref: '#/definitions/Product'
+          400:
+            description: bad input parameter
+          404:
+            description: product not existing
+definitions:
+  Product:
+    type: object
+    required:
+    - id
+    properties:
+      id:
+        type: integer
+        example: 0
+      name:
+        type: string
+        example: Cat
+      price:
+        type: number
+        example: 50
+      details:
+        type: string
+        example: fluffy pet
+      category:
+        type: string
+        example: Pet
+  Category:
+    required:
+    - name
+    - id
+    properties:
+      name:
+        type: string
+        example: Pets
+      id:
+        type: integer
+        example:  0
+  User:
+    required:
+    - id
+    - firstname
+    - lastname
+    - password
+    - role
+    properties:
+      id:
+        type: integer
+        example: 0
+      firstname:
+        type: string
+        example: tom
+      lastname:
+        type: string
+        example: bismarck
+      password:
+        type: string
+        example: hidden
+      role:
+        type: integer
+        example: 1
+        
+  Role:
+    required:
+    - id
+    properties:
+      id:
+        type: integer
+        example: 0
+      type:
+        type: string
+      level:
+        type: integer
+
+  LoginRequest:
+    required:
+    - username
+    - password
+    properties:
+      username:
+        type: string
+        example: 0
+      password:
+        type: string
+        example: 0
+host: virtserver.swaggerhub.com
+basePath: /anon767/HsKA/1.0.0
+schemes:
+ - https
