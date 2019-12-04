@@ -112,9 +112,16 @@ public class UserApiController implements UserApi {
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     public ResponseEntity<Void> updateUser(@ApiParam(value = "user to add"  )  @Valid @RequestBody User user) {
+
         if (!validate(user)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+        User repoUser = repository.findOne(user.getId());
+        if (repoUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         user = repository.save(user);
 
         if (user.getId() != null) {

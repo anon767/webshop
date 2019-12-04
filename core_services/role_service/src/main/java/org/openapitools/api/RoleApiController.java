@@ -118,7 +118,7 @@ public class RoleApiController implements RoleApi {
         }
 
         Role repoRole = repository.findOne(role.getId());
-        if(repoRole == null) {
+        if (repoRole == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
