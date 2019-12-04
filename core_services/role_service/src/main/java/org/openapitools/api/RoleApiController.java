@@ -111,11 +111,17 @@ public class RoleApiController implements RoleApi {
     @RequestMapping(value = "/role",
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    public ResponseEntity<Void> updateRole(@ApiParam(value = "role to add"  )  @Valid @RequestBody Role role) {
+    public ResponseEntity<Void> updateRole(@ApiParam(value = "role to update"  )  @Valid @RequestBody Role role) {
         
         if (!validate(role)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+        Role repoRole = repository.findOne(role.getId());
+        if(repoRole == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         role = repository.save(role);
 
         if (role.getId() != null) {
