@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "category-service", fallback = CategoryCoreFallback.class, decode404 = true)
+@FeignClient(name = "category-service", decode404 = true)
 public interface CategoryCoreRestClient {
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     ResponseEntity<Iterable<Category>> getCategories();

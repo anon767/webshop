@@ -3,13 +3,17 @@ package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 import hska.iwi.eShopMaster.model.Role;
 import hska.iwi.eShopMaster.model.User;
 import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
+import hska.iwi.eShopMaster.restclient.ProductCoreRestClient;
+import hska.iwi.eShopMaster.restclient.RoleCoreRestClient;
+import hska.iwi.eShopMaster.restclient.UserCoreRestClient;
+import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * @author knad0001
- */
 
 public class UserManagerImpl implements UserManager {
-
+    @Autowired
+    private UserCoreRestClient userClient;
+    @Autowired
+    private RoleCoreRestClient roleClient;
     public UserManagerImpl() {
 
     }

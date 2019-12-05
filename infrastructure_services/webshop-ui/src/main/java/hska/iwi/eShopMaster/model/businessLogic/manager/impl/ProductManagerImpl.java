@@ -2,11 +2,21 @@ package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
 import hska.iwi.eShopMaster.model.Product;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
+import hska.iwi.eShopMaster.restclient.ProductCategoryCoreRestClient;
+import hska.iwi.eShopMaster.restclient.ProductCoreRestClient;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductManagerImpl implements ProductManager {
+
+
+    @Autowired
+    private ProductCoreRestClient productClient;
+
+    @Autowired
+    private ProductCategoryCoreRestClient productCategoryCoreRestClient;
 
     public ProductManagerImpl() {
 
