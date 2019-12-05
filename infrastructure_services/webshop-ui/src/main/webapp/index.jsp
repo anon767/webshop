@@ -56,7 +56,7 @@
 						</div>
 							
 						<div>
-							<p><a href="META-INF/resources/WEB-INF/jsp/register.jsp">Noch nicht registriert?</a> </p>
+							<p><a href="pages/register.jsp">Noch nicht registriert?</a> </p>
 			 			</div>
 					</s:form>
 				</div>
