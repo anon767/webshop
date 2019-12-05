@@ -6,7 +6,6 @@ import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.restclient.CategoryCoreRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryManagerImpl implements CategoryManager {
@@ -20,28 +19,41 @@ public class CategoryManagerImpl implements CategoryManager {
     }
 
     public List<Category> getCategories() {
-        return new ArrayList<>();
+
+        return (List<Category>) categoryClient.getCategories().getBody();
     }
 
     public Category getCategory(int id) {
-        return new Category();
+        List<Category> categories = this.getCategories();
+        for (Category c : categories) {
+            if (c.getId() == id) {
+                return c;
+            }
+        }
+        return null;
     }
 
     public Category getCategoryByName(String name) {
-        return new Category();
+        List<Category> categories = this.getCategories();
+        for (Category c : categories) {
+            if (c.getName().equals(name)) {
+                return c;
+            }
+        }
+        return null;
     }
 
     public void addCategory(String name) {
-
+        Category c = new Category();
+        c.setName(name);
+    categoryClient.addCategory(c);
     }
 
     public void delCategory(Category cat) {
-
-// 		Products are also deleted because of relation in Category.java 
-
+        categoryClient.deleteCategory(cat.getId());
     }
 
     public void delCategoryById(int id) {
-
+        categoryClient.deleteCategory(id);
     }
 }
