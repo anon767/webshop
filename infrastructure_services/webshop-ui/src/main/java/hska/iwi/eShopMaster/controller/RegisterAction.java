@@ -37,7 +37,7 @@ public class RegisterAction extends ActionSupport {
     		    	
 	        // save it to database
 	        userManager.registerUser(this.username, this.firstname, this.lastname, this.password1, this.role);
-	            // User has been saved successfully to databse:
+	            // User has been saved successfully to database:
 	        	addActionMessage("user registered, please login");
 	        	addActionError("user registered, please login");
 				Map<String, Object> session = ActionContext.getContext().getSession();

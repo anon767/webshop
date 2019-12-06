@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@FeignClient(name = "category-service", decode404 = true)
+@FeignClient(name = "role-service", decode404 = true)
 public interface RoleCoreRestClient {
 
     @RequestMapping(value = "/role", method = RequestMethod.POST)

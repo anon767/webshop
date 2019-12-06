@@ -20,7 +20,13 @@ public class UserManagerImpl implements UserManager {
 
 
     public void registerUser(String username, String name, String lastname, String password, Role role) {
-
+        User user = new User();
+        user.setUsername(username);
+        user.setFirstname(name);
+        user.setLastname(lastname);
+        user.setPassword(password);
+        user.setRoleId(role.getId());
+        userClient.addUser(user);
     }
 
 

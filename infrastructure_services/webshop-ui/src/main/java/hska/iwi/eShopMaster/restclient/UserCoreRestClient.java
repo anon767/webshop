@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-@FeignClient(name = "category-service", decode404 = true)
+@FeignClient(name = "user-service", decode404 = true)
 public interface UserCoreRestClient {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
