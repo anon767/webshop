@@ -8,12 +8,23 @@ import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Map;
 
+@Controller
 public class AddProductAction extends ActionSupport {
+    @Autowired
+    private CategoryManagerImpl categoryManager;
 
+    @Autowired
+    private UserManagerImpl userManager;
+
+    @Autowired
+    private ProductManagerImpl productManager;
     private static final long serialVersionUID = 39979991339088L;
 
     private String name = null;
@@ -43,7 +54,6 @@ public class AddProductAction extends ActionSupport {
 
     @Override
     public void validate() {
-        CategoryManager categoryManager = new CategoryManagerImpl();
         this.setCategories(categoryManager.getCategories());
         // Validate name:
 

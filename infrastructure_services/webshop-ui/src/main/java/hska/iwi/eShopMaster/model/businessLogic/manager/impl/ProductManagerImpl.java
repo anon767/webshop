@@ -7,11 +7,14 @@ import hska.iwi.eShopMaster.restclient.CategoryCoreRestClient;
 import hska.iwi.eShopMaster.restclient.ProductCategoryCoreRestClient;
 import hska.iwi.eShopMaster.restclient.ProductCoreRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
 
+@Service
 public class ProductManagerImpl implements ProductManager {
 
 

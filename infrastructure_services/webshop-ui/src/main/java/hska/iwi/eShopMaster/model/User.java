@@ -126,8 +126,6 @@ public class User {
   */
   @ApiModelProperty(example = "geheimgeheim", required = true, value = "")
   @NotNull
-
-
   public String getPassword() {
     return password;
   }

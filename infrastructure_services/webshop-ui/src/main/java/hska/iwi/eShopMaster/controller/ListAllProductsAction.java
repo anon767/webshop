@@ -3,6 +3,7 @@ package hska.iwi.eShopMaster.controller;
 import hska.iwi.eShopMaster.model.Product;
 import hska.iwi.eShopMaster.model.User;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
 
 
@@ -11,14 +12,25 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class ListAllProductsAction extends ActionSupport {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -94109228677381902L;
-	
+	@Autowired
+	private CategoryManagerImpl categoryManager;
+
+	@Autowired
+	private UserManagerImpl userManager;
+
+	@Autowired
+	private ProductManagerImpl productManager;
 	User user;
 	private List<Product> products;
 	
@@ -30,7 +42,6 @@ public class ListAllProductsAction extends ActionSupport {
 		
 		if(user != null){
 			System.out.println("list all products!");
-			ProductManager productManager = new ProductManagerImpl();
 			this.products = productManager.getProducts();
 			result = "success";
 		}

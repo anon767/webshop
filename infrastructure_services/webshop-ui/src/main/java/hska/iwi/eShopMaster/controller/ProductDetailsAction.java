@@ -3,15 +3,27 @@ package hska.iwi.eShopMaster.controller;
 import hska.iwi.eShopMaster.model.Product;
 import hska.iwi.eShopMaster.model.User;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
 
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class ProductDetailsAction extends ActionSupport {
-	
+	@Autowired
+	private CategoryManagerImpl categoryManager;
+
+	@Autowired
+	private UserManagerImpl userManager;
+
+	@Autowired
+	private ProductManagerImpl productManager;
 	private User user;
 	private int id;
 	private String searchValue;
@@ -32,7 +44,6 @@ public class ProductDetailsAction extends ActionSupport {
 		user = (User) session.get("webshop_user");
 		
 		if(user != null) {
-			ProductManager productManager = new ProductManagerImpl();
 			product = productManager.getProductById(id);
 			
 			res = "success";			

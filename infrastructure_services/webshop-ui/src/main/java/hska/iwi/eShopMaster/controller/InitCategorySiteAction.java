@@ -10,14 +10,26 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class InitCategorySiteAction extends ActionSupport {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1108136421569378914L;
+	@Autowired
+	private CategoryManagerImpl categoryManager;
 
+	@Autowired
+	private UserManagerImpl userManager;
+
+	@Autowired
+	private ProductManagerImpl productManager;
 	private String pageToGoTo;
 	private User user;
 
@@ -32,7 +44,6 @@ public class InitCategorySiteAction extends ActionSupport {
 		boolean isAdmin = true;
 		if(user != null && isAdmin) {
 
-			CategoryManager categoryManager = new CategoryManagerImpl();
 			this.setCategories(categoryManager.getCategories());
 			
 			if(pageToGoTo != null){

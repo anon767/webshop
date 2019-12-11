@@ -2,7 +2,9 @@ package hska.iwi.eShopMaster.controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class LogoutAction extends ActionSupport {
 
 	/**

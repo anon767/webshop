@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.hska.webshop.user", "org.openapitools.api" , "com.hska.webshop.user.config"})
+@ComponentScan(basePackages = {"com.hska.webshop.user", "org.openapitools.model", "org.openapitools.api" , "com.hska.webshop.user.config"})
 @EntityScan(basePackages = {"org.openapitools.model"} )
 @EnableDiscoveryClient
 @EnableCircuitBreaker

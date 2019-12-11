@@ -2,13 +2,18 @@ package hska.iwi.eShopMaster.controller;
 
 import hska.iwi.eShopMaster.model.User;
 import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
 
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class LoginAction extends ActionSupport {
 
 	/**
@@ -20,7 +25,14 @@ public class LoginAction extends ActionSupport {
 	private String firstname;
 	private String lastname;
 	private String role;
-	
+	@Autowired
+	private CategoryManagerImpl categoryManager;
+
+	@Autowired
+	private UserManagerImpl userManager;
+
+	@Autowired
+	private ProductManagerImpl productManager;
 
 	@Override
 	public String execute() throws Exception {
@@ -28,10 +40,9 @@ public class LoginAction extends ActionSupport {
 		// Return string:
 		String result = "input";
 
-		UserManager myCManager = new UserManagerImpl();
-		
+
 		// Get user from DB:
-		User user = myCManager.getUserByUsername(getUsername());
+		User user = userManager.getUserByUsername(getUsername());
 
 		// Does user exist?
 		if (user != null) {

@@ -6,10 +6,15 @@ import hska.iwi.eShopMaster.model.Category;
 import hska.iwi.eShopMaster.model.User;
 import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Map;
 
+@Controller
 public class AddCategoryAction extends ActionSupport {
 
     /**
@@ -20,6 +25,15 @@ public class AddCategoryAction extends ActionSupport {
     private String newCatName = null;
 
     private List<Category> categories;
+
+    @Autowired
+    private CategoryManagerImpl categoryManager;
+
+    @Autowired
+    private UserManagerImpl userManager;
+
+    @Autowired
+    private ProductManagerImpl productManager;
 
     User user;
 
@@ -51,7 +65,6 @@ public class AddCategoryAction extends ActionSupport {
             addActionError(getText("error.catname.required"));
         }
         // Go and get new Category list
-        CategoryManager categoryManager = new CategoryManagerImpl();
         this.setCategories(categoryManager.getCategories());
     }
 

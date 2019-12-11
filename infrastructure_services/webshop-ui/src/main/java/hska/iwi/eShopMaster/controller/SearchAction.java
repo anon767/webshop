@@ -9,18 +9,28 @@ import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
+@Controller
 public class SearchAction extends ActionSupport {
 
     /**
      *
      */
     private static final long serialVersionUID = -6565401833074694229L;
+    @Autowired
+    private CategoryManagerImpl categoryManager;
 
+    @Autowired
+    private UserManagerImpl userManager;
+
+    @Autowired
+    private ProductManagerImpl productManager;
 
     private String searchDescription = null;
     private String searchMinPrice;
@@ -45,7 +55,6 @@ public class SearchAction extends ActionSupport {
 
         if (user != null) {
             // Search products and show results:
-            ProductManager productManager = new ProductManagerImpl();
 //			this.products = productManager.getProductsForSearchValues(this.searchDescription, this.searchMinPrice, this.searchMaxPrice);
             if (!searchMinPrice.isEmpty()) {
                 sMinPrice = Double.parseDouble(this.searchMinPrice);
@@ -56,7 +65,6 @@ public class SearchAction extends ActionSupport {
             this.products = productManager.getProductsForSearchValues(this.searchDescription, sMinPrice, sMaxPrice);
 
             // Show all categories:
-            CategoryManager categoryManager = new CategoryManagerImpl();
             this.categories = categoryManager.getCategories();
             result = "success";
         }
