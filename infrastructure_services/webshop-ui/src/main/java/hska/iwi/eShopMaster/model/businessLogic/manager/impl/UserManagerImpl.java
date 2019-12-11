@@ -33,22 +33,20 @@ public class UserManagerImpl implements UserManager {
 
 
     public User getUserByUsername(String username) {
-        return new User();
+        return userClient.getUserByUsername(username).getBody();
     }
 
     public boolean deleteUserById(int id) {
-        return false;
+        int statusCode = userClient.deleteUser(id).getStatusCodeValue();
+        return statusCode == 204;
     }
 
     public Role getRoleByLevel(int level) {
-        Role role = new Role();
-        role.setId(0);
-        return role;
+        return roleClient.getRoleByLevel(level).getBody().get(0);
     }
 
     public boolean doesUserAlreadyExist(String username) {
-
-        return false;
+        return userClient.getUserByUsername(username).getBody() != null;
     }
 
 
@@ -56,5 +54,4 @@ public class UserManagerImpl implements UserManager {
         return !user.getFirstname().isEmpty() && !user.getPassword().isEmpty();
 
     }
-
 }
