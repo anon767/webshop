@@ -12,12 +12,14 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 @ServletComponentScan
-@EnableFeignClients(basePackages = "hska.iwi.eShopMaster.restclient")
+@EnableFeignClients
+@ComponentScan(basePackages = {"hska.iwi.eShopMaster.model.businessLogic.manager.impl", "hska.iwi.eShopMaster.controller"})
 public class WebshopUiApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -25,10 +27,11 @@ public class WebshopUiApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
+        System.out.println("Im starting");
         SpringApplication.run(WebshopUiApplication.class, args);
     }
 
-    @Bean
+   /** @Bean
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         StrutsPrepareAndExecuteFilter struts = new StrutsPrepareAndExecuteFilter();
@@ -36,5 +39,5 @@ public class WebshopUiApplication extends SpringBootServletInitializer {
         registrationBean.setOrder(1);
         return registrationBean;
     }
-
+**/
 }
