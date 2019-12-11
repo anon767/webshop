@@ -3,12 +3,13 @@ package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 import hska.iwi.eShopMaster.model.Role;
 import hska.iwi.eShopMaster.model.User;
 import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
-import hska.iwi.eShopMaster.restclient.ProductCoreRestClient;
 import hska.iwi.eShopMaster.restclient.RoleCoreRestClient;
 import hska.iwi.eShopMaster.restclient.UserCoreRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class UserManagerImpl implements UserManager {
     @Autowired
     private UserCoreRestClient userClient;
@@ -21,6 +22,7 @@ public class UserManagerImpl implements UserManager {
 
     public void registerUser(String username, String name, String lastname, String password, Role role) {
         User user = new User();
+        user.setId(0);
         user.setUsername(username);
         user.setFirstname(name);
         user.setLastname(lastname);
@@ -39,7 +41,9 @@ public class UserManagerImpl implements UserManager {
     }
 
     public Role getRoleByLevel(int level) {
-        return new Role();
+        Role role = new Role();
+        role.setId(0);
+        return role;
     }
 
     public boolean doesUserAlreadyExist(String username) {
