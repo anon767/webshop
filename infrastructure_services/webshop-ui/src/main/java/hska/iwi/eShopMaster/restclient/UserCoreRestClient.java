@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-@FeignClient(name = "user-service", decode404 = true)
+@FeignClient(name = "api-gateway-service", decode404 = true)
 public interface UserCoreRestClient {
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/user-service/user", method = RequestMethod.POST)
      ResponseEntity<Void> addUser(@ApiParam(value = "user to add"  )  @Valid @RequestBody User user);
 
-    @RequestMapping(value = "/user", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user-service/user", method = RequestMethod.DELETE)
      ResponseEntity<Void> deleteUser(@NotNull @ApiParam(value = "the user id", required = true) @Valid @RequestParam(value = "id", required = true) Integer id);
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/user-service/user", method = RequestMethod.GET)
      ResponseEntity<User> getUser(@NotNull @ApiParam(value = "the user id", required = true) @Valid @RequestParam(value = "id", required = true) Integer id);
 
-    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @RequestMapping(value = "/user-service/user", method = RequestMethod.PUT)
      ResponseEntity<Void> updateUser(@ApiParam(value = "user to add"  )  @Valid @RequestBody User user);
 
-    @RequestMapping(value = "/userByUsername", method = RequestMethod.GET)
+    @RequestMapping(value = "/user-service/userByUsername", method = RequestMethod.GET)
      ResponseEntity<User> getUserByUsername(@NotNull @ApiParam(value = "the username", required = true) @Valid @RequestParam(value = "username", required = true) String username);
 
 }

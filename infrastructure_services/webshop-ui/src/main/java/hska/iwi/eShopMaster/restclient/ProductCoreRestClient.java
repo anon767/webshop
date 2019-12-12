@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "product-service", decode404 = true)
+@FeignClient(name = "api-gateway-service", decode404 = true)
 public interface ProductCoreRestClient {
-    @RequestMapping(value = "/product/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/product-service/product/getAll", method = RequestMethod.GET)
     ResponseEntity<List<Product>> getAllProducts();
 
-    @RequestMapping(value = "/product", method = RequestMethod.POST)
+    @RequestMapping(value = "/product-service/product", method = RequestMethod.POST)
     ResponseEntity<Void> addProduct(@RequestBody Product product);
 
-    @RequestMapping(value = "/product", method = RequestMethod.PUT)
+    @RequestMapping(value = "/product-service/product", method = RequestMethod.PUT)
     ResponseEntity<Void> updateProduct(@RequestBody Product product);
 
-    @RequestMapping(value = "/product", method = RequestMethod.GET)
+    @RequestMapping(value = "/product-service/product", method = RequestMethod.GET)
     ResponseEntity<Product> getProduct(@RequestParam(name = "id", required = true) Integer id);
 
-    @RequestMapping(value = "/product", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/product-service/product", method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteProduct(@RequestParam(name = "id", required = true) Integer id);
 }

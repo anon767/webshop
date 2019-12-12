@@ -13,22 +13,22 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@FeignClient(name = "role-service", decode404 = true)
+@FeignClient(name = "api-gateway-service", decode404 = true)
 public interface RoleCoreRestClient {
 
-    @RequestMapping(value = "/role", method = RequestMethod.POST)
+    @RequestMapping(value = "/role-service/role", method = RequestMethod.POST)
     ResponseEntity<Void> addRole(@ApiParam(value = "role to add") @Valid @RequestBody Role role);
 
-    @RequestMapping(value = "/role", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/role-service/role", method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteRole(@NotNull @ApiParam(value = "the role id", required = true) @Valid @RequestParam(value = "id", required = true) Integer id);
 
-    @RequestMapping(value = "/role", method = RequestMethod.GET)
+    @RequestMapping(value = "/role-service/role", method = RequestMethod.GET)
     ResponseEntity<Role> getRole(@NotNull @ApiParam(value = "the role id", required = true) @Valid @RequestParam(value = "id", required = true) Integer id);
 
-    @RequestMapping(value = "/role", method = RequestMethod.PUT)
+    @RequestMapping(value = "/role-service/role", method = RequestMethod.PUT)
     ResponseEntity<Void> updateRole(@ApiParam(value = "role to update") @Valid @RequestBody Role role);
 
-    @RequestMapping(value = "/roleByLevel", method = RequestMethod.GET)
+    @RequestMapping(value = "/role-service/roleByLevel", method = RequestMethod.GET)
     ResponseEntity<List<Role>> getRoleByLevel(@NotNull @ApiParam(value = "the role level", required = true) @Valid @RequestParam(value = "level", required = true) Integer level);
 
 }
