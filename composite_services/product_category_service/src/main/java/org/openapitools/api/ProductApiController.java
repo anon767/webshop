@@ -1,9 +1,6 @@
 package org.openapitools.api;
 
-import com.hska.webshop.product_category.RestClient.CategoryCoreFallback;
-import com.hska.webshop.product_category.RestClient.CategoryCoreRestClient;
-import com.hska.webshop.product_category.RestClient.ProductCoreFallback;
-import com.hska.webshop.product_category.RestClient.ProductCoreRestClient;
+import com.hska.webshop.product_category.RestClient.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -137,7 +134,12 @@ public class ProductApiController implements ProductApi {
 
     public List<Product> getProductByNameAndMinMaxPrice(String name, float minPrice, float maxPrice) {
         System.out.println(this.productClient.getAllProducts().getBody().toString());
-        return ((List<Product>) this.productClient.getAllProducts().getBody())
+
+        List<Product> products = (List<Product>) this.productClient.getAllProducts().getBody();
+        GlobalCache cache = GlobalCache.getInstance();
+        cache.setProductCache(products);
+
+        return products
                 .stream()
                 .filter(product -> (product.getName().contains(name.trim()) || product.getDetails().contains(name.trim())) &&
                         product.getPrice().floatValue() >= minPrice &&

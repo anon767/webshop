@@ -9,9 +9,7 @@ public class CategoryCoreFallback implements CategoryCoreRestClient {
     private static final String FALLBACK_TEXT = "category-core-service not found";
 
     public ResponseEntity<Iterable<Category>> getCategories() {
-        ResponseEntity<Iterable<Category>> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        response.getHeaders().add("Fallback", FALLBACK_TEXT);
-        return response;
+        return  new ResponseEntity<>(GlobalCache.getInstance().getCategoryCache(),HttpStatus.OK);
     }
 
     public ResponseEntity<Void> addCategory(Category category) {

@@ -13,9 +13,7 @@ public class ProductCoreFallback implements ProductCoreRestClient {
 
     @Override
     public ResponseEntity<List<Product>> getAllProducts() {
-        ResponseEntity<List<Product>> response = new ResponseEntity<>(new ArrayList<>(), HttpStatus.NOT_FOUND);
-        response.getHeaders().add("Fallback", FALLBACK_TEXT);
-        return response;
+        return new ResponseEntity<>(GlobalCache.getInstance().getProductCache(),HttpStatus.OK);
     }
 
     @Override
@@ -34,9 +32,7 @@ public class ProductCoreFallback implements ProductCoreRestClient {
 
     @Override
     public ResponseEntity<Product> getProduct(Integer id) {
-        ResponseEntity<Product> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        response.getHeaders().add("Fallback", FALLBACK_TEXT);
-        return response;
+        return new ResponseEntity<>(GlobalCache.getInstance().getProduct(id),HttpStatus.OK);
     }
 
     @Override
