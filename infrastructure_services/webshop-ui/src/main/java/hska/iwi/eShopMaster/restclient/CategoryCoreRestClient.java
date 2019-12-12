@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "category-service", decode404 = true)
+@FeignClient(name = "api-gateway-service", decode404 = true)
 public interface CategoryCoreRestClient {
-    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    @RequestMapping(value = "/category-service/category", method = RequestMethod.GET)
     ResponseEntity<Iterable<Category>> getCategories();
 
-    @RequestMapping(value = "/category", method = RequestMethod.POST)
+    @RequestMapping(value = "/category-service/category", method = RequestMethod.POST)
     ResponseEntity<Void> addCategory(@RequestBody(required = true) Category category);
 
-    @RequestMapping(value = "/category", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/category-service/category", method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteCategory(@RequestParam(name = "id", required = true) Integer id);
 }
