@@ -3,8 +3,8 @@ package com.hska.webshop.product_category.RestClient;
 import org.openapitools.model.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCoreFallback implements ProductCoreRestClient {
@@ -13,7 +13,10 @@ public class ProductCoreFallback implements ProductCoreRestClient {
 
     @Override
     public ResponseEntity<List<Product>> getAllProducts() {
-        return new ResponseEntity<>(GlobalCache.getInstance().getProductCache(),HttpStatus.OK);
+        System.out.println("fallback executed");
+        List<Product> products = GlobalCache.getInstance().getProductCache();
+        products.forEach(product -> System.out.println(product.getName()));
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @Override
@@ -32,7 +35,7 @@ public class ProductCoreFallback implements ProductCoreRestClient {
 
     @Override
     public ResponseEntity<Product> getProduct(Integer id) {
-        return new ResponseEntity<>(GlobalCache.getInstance().getProduct(id),HttpStatus.OK);
+        return new ResponseEntity<>(GlobalCache.getInstance().getProduct(id), HttpStatus.OK);
     }
 
     @Override

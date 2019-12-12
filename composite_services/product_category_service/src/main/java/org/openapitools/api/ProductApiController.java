@@ -148,7 +148,10 @@ public class ProductApiController implements ProductApi {
     }
 
     public Category getCategoryByName(String name) {
-        return ((List<Category>) this.categoryClient.getCategories().getBody())
+        List<Category> categories = ((List<Category>) this.categoryClient.getCategories().getBody());
+        GlobalCache cache = GlobalCache.getInstance();
+        cache.setCategoryCache(categories);
+        return  categories
                 .stream()
                 .filter(category -> category.getName().equals(name))
                 .collect(Collectors.toList()).get(0);
