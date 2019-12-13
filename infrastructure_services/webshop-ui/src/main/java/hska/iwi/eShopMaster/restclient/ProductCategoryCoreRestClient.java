@@ -21,6 +21,8 @@ public interface ProductCategoryCoreRestClient {
     ResponseEntity<Void> updateProduct(@RequestBody Product product);
 
     @RequestMapping(value = "/product-category-service/product/search", method = RequestMethod.GET)
-    ResponseEntity<List<Product>> searchProduct(@ApiParam(value = "description for product or catalog") @Valid @RequestParam(value = "description", required = false) String description, @ApiParam(value = "minimal price") @Valid @RequestParam(value = "minprice", required = false) String minprice,
-                                                       @ApiParam(value = "maximal price") @Valid @RequestParam(value = "maxprice", required = false) String maxprice);
-    }
+    ResponseEntity<List<Product>> searchProduct(
+            @ApiParam(value = "description for product or catalog") @Valid @RequestParam(value = "description", required = false) String description,
+            @ApiParam(value = "minimal price") @Valid @RequestParam(value = "minprice", required = false) String minprice,
+            @ApiParam(value = "maximal price") @Valid @RequestParam(value = "maxprice", required = false) String maxprice);
+}

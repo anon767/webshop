@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "api-gateway-service", decode404 = true)
+@FeignClient(name = "api-gateway-service", fallback = ProductCoreFallback.class, decode404 = true)
 public interface ProductCoreRestClient {
     @RequestMapping(value = "/product-service/product/getAll", method = RequestMethod.GET)
     ResponseEntity<List<Product>> getAllProducts();

@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import hska.iwi.eShopMaster.model.Category;
 import hska.iwi.eShopMaster.model.User;
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;

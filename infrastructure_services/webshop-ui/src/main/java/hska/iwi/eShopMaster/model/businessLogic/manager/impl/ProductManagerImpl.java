@@ -3,11 +3,8 @@ package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 import hska.iwi.eShopMaster.model.Category;
 import hska.iwi.eShopMaster.model.Product;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
-import hska.iwi.eShopMaster.restclient.CategoryCoreRestClient;
-import hska.iwi.eShopMaster.restclient.ProductCategoryCoreRestClient;
-import hska.iwi.eShopMaster.restclient.ProductCoreRestClient;
+import hska.iwi.eShopMaster.restclient.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,7 +13,6 @@ import java.util.List;
 
 @Service
 public class ProductManagerImpl implements ProductManager {
-
 
     @Autowired
     private ProductCoreRestClient productClient;
@@ -32,8 +28,10 @@ public class ProductManagerImpl implements ProductManager {
     }
 
     public List<Product> getProducts() {
-
-        return (List<Product>) productClient.getAllProducts().getBody();
+        List<Product> products = this.productClient.getAllProducts().getBody();
+        GlobalCache cache = GlobalCache.getInstance();
+        cache.setProductCache(products);
+        return products;
     }
 
     public List<Product> getProductsForSearchValues(String searchDescription,

@@ -4,8 +4,8 @@ package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 import hska.iwi.eShopMaster.model.Category;
 import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.restclient.CategoryCoreRestClient;
+import hska.iwi.eShopMaster.restclient.GlobalCache;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +22,10 @@ public class CategoryManagerImpl implements CategoryManager {
     }
 
     public List<Category> getCategories() {
-
-        return (List<Category>) categoryClient.getCategories().getBody();
+        List<Category> categories = (List<Category>)this.categoryClient.getCategories().getBody();
+        GlobalCache cache = GlobalCache.getInstance();
+        cache.setCategoryCache(categories);
+        return categories;
     }
 
     public Category getCategory(int id) {
