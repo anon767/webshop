@@ -51,7 +51,8 @@ public class CategoryManagerImpl implements CategoryManager {
     public void addCategory(String name) {
         Category c = new Category();
         c.setName(name);
-    categoryClient.addCategory(c);
+        c.setId(0);
+        categoryClient.addCategory(c);
     }
 
     public void delCategory(Category cat) {

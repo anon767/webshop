@@ -54,8 +54,11 @@ public class AddCategoryAction extends ActionSupport {
          res = "success";
          }
          **/
+        if(newCatName != null) {
+            categoryManager.addCategory(newCatName);
+            res = "success";
+        }
         return res;
-
     }
 
     @Override
