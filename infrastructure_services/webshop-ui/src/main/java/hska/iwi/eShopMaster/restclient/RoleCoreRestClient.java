@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@FeignClient(name = "api-gateway-service", decode404 = true)
+@FeignClient(name = "api-gateway-service", fallback = RoleCoreFallback.class, decode404 = true)
 public interface RoleCoreRestClient {
 
     @RequestMapping(value = "/role-service/role", method = RequestMethod.POST)

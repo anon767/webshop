@@ -82,7 +82,6 @@ public class LoginAction extends ActionSupport {
 		session.put("message", "");
 		firstname= user.getFirstname();
 		lastname = user.getLastname();
-		//TODO: role = user.getRole().getTyp();
 		result = "success";
 
 		return result;
