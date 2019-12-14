@@ -6,11 +6,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title><s:text name="categories.head" /></title>
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/custom.css">
-	<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -21,7 +21,7 @@
 		<div>
 			<ul class="nav navbar-nav">
 				<li><a href="<s:url action="listAllProducts" />">Alle Produkte</a>
-					<s:if test="#session.webshop_user.role.level==0">   <!-- if admin -->
+					<s:if test="#session.webshop_role_level==0">   <!-- if admin -->
 				<li><a href="./InitCategorySiteAction.action?pageToGoTo=p"><s:text name="product.add" /></a></li>
 				<li><a href="./InitCategorySiteAction.action?pageToGoTo=c"><s:text name="categories.edit" /></a></li>
 				</s:if>
