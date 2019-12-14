@@ -34,8 +34,17 @@ public class ProductManagerImpl implements ProductManager {
         return products;
     }
 
-    public List<Product> getProductsForSearchValues(String searchDescription,
-                                                    Double searchMinPrice, Double searchMaxPrice) {
+    public List<Product> getProductsForSearchValues(
+            String searchDescription,
+            Double searchMinPrice,
+            Double searchMaxPrice) {
+
+        if(searchMinPrice == null)
+            searchMinPrice = 0.0;
+
+        if(searchMaxPrice == null)
+            searchMaxPrice = Double.MAX_VALUE;
+
         return productCategoryCoreRestClient.searchProduct(searchDescription, searchMinPrice.toString(), searchMaxPrice.toString()).getBody();
     }
 
