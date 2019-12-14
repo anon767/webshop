@@ -49,6 +49,12 @@ public class AddProductAction extends ActionSupport {
             }
         }
 **/
+        int productId = productManager.addProduct(name, Double.parseDouble(price), categoryId, details);
+
+        if (productId > 0) {
+            result = "success";
+        }
+
         return result;
     }
 

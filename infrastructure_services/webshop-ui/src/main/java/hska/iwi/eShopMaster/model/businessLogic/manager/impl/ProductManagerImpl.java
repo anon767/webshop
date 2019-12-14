@@ -74,6 +74,7 @@ public class ProductManagerImpl implements ProductManager {
 
     public int addProduct(String name, double price, int categoryId, String details) {
         Product p = new Product();
+        p.setId(0);
         p.setDetails(details);
         p.setPrice(new BigDecimal(price, MathContext.DECIMAL64));
         p.setName(name);
