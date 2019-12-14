@@ -21,9 +21,9 @@
 		<div>
 			<ul class="nav navbar-nav">
 				<li><a href="<s:url action="listAllProducts" />">Alle Produkte</a>
-					<s:if test="#session.webshop_user.role.level==0">   <!-- if admin -->
-				<li><a href="./InitCategorySiteAction.action?pageToGoTo=p"><s:text name="product.add" /></a></li>
-				<li><a href="./InitCategorySiteAction.action?pageToGoTo=c"><s:text name="categories.edit" /></a></li>
+				<s:if test="#session.webshop_role_level==0">   <!-- if admin -->
+				    <li><a href="./InitCategorySiteAction.action?pageToGoTo=p"><s:text name="product.add" /></a></li>
+				    <li><a href="./InitCategorySiteAction.action?pageToGoTo=c"><s:text name="categories.edit" /></a></li>
 				</s:if>
 			</ul>
 			<div>
@@ -90,7 +90,7 @@
 						<td class="odd"><s:property value="price" /></td>
 						<td class="odd"><s:property value="category" /></td>
 						<td class="odd"><a href="./ProductDetailsAction.action?id=<s:property value='id'/>&searchValue=<s:property value='searchValue'/>&searchMinPrice=<s:property value='searchMinPrice'/>&searchMaxPrice=<s:property value='searchMaxPrice'/>"><img src="img/detBtn.png" alt="<s:text name="product.details" />"/></a></td>
-						<s:if test="#session.webshop_user.role.level==0">
+						<s:if test="#session.webshop_role_level==0">
 							<td class="odd"><a href="./DeleteProductAction.action?id=<s:property value='id'/>"><img src="img/delBtn.png" alt="<s:text name="product.delete" />"/></a></td>
 						</s:if>
 					</s:if>
@@ -100,7 +100,7 @@
 						<td><s:property value="price" /></td>
 						<td><s:property value="category" /></td>
 						<td><a href="./ProductDetailsAction.action?id=<s:property value='id'/>&searchValue=<s:property value='searchValue'/>&searchMinPrice=<s:property value='searchMinPrice'/>&searchMaxPrice=<s:property value='searchMaxPrice'/>"><img src="img/detBtn.png" alt="<s:text name="product.details" />"/></a></td>
-						<s:if test="#session.webshop_user.role.level==0">
+						<s:if test="#session.webshop_role_level==0">
 							<td><a href="./DeleteProductAction.action?id=<s:property value='id'/>"><img src="img/delBtn.png" alt="<s:text name="product.delete" />"/></a></td>
 						</s:if>
 					</s:else>

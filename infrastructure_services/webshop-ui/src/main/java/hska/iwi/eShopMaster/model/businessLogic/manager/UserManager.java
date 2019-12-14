@@ -13,6 +13,8 @@ public interface UserManager {
     public boolean deleteUserById(int id);
     
     public Role getRoleByLevel(int level);
-    
+
+    public Role getRole(int id);
+
     public boolean doesUserAlreadyExist(String username);
 }

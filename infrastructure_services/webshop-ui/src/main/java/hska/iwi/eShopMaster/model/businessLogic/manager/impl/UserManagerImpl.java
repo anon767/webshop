@@ -45,6 +45,10 @@ public class UserManagerImpl implements UserManager {
         return roleClient.getRoleByLevel(level).getBody().get(0);
     }
 
+    public Role getRole(int id) {
+        return roleClient.getRole(id).getBody();
+    }
+
     public boolean doesUserAlreadyExist(String username) {
         return userClient.getUserByUsername(username).getBody() != null;
     }

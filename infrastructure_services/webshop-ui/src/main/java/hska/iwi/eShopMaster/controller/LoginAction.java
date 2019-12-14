@@ -1,5 +1,6 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.model.Role;
 import hska.iwi.eShopMaster.model.User;
 import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
@@ -40,32 +41,49 @@ public class LoginAction extends ActionSupport {
 		// Return string:
 		String result = "input";
 
-
 		// Get user from DB:
 		User user = userManager.getUserByUsername(getUsername());
 
 		// Does user exist?
-		if (user != null) {
-			// Is the password correct?
-			if (user.getPassword().equals(getPassword())) {
-				// Get session to save user role and login:
-				Map<String, Object> session = ActionContext.getContext().getSession();
-				
-				// Save user object in session:
-				session.put("webshop_user", user);
-				session.put("message", "");
-				firstname= user.getFirstname();
-				lastname = user.getLastname();
-				//TODO: role = user.getRole().getTyp();
-				result = "success";
-			}
-			else {
-				addActionError(getText("error.password.wrong"));
-			}
-		}
-		else {
+		if (user == null) {
 			addActionError(getText("error.username.wrong"));
+			return result;
 		}
+
+		// Is the password correct?
+		if (!user.getPassword().equals(getPassword())) {
+			addActionError(getText("error.password.wrong"));
+			return result;
+		}
+
+		final Integer roleId = user.getRoleId();
+		if (roleId == null) {
+			System.out.println("roleId is null");
+			return result;
+		}
+
+		Role role = userManager.getRole(roleId);
+		if (role == null) {
+			System.out.println("role is null");
+			return result;
+		}
+
+		if (role.getLevel() < 0) {
+			System.out.println("role level is to low");
+			return result;
+		}
+
+		// Get session to save user role and login:
+		Map<String, Object> session = ActionContext.getContext().getSession();
+
+		// Save user object in session:
+		session.put("webshop_user", user);
+		session.put("webshop_role_level", role.getLevel());
+		session.put("message", "");
+		firstname= user.getFirstname();
+		lastname = user.getLastname();
+		//TODO: role = user.getRole().getTyp();
+		result = "success";
 
 		return result;
 	}
