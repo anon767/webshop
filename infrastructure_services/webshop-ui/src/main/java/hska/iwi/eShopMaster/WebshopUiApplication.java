@@ -1,9 +1,6 @@
 package hska.iwi.eShopMaster;
 
-import hska.iwi.eShopMaster.restclient.CategoryCoreFallback;
-import hska.iwi.eShopMaster.restclient.ProductCoreFallback;
-import hska.iwi.eShopMaster.restclient.RoleCoreFallback;
-import hska.iwi.eShopMaster.restclient.UserCoreFallback;
+import hska.iwi.eShopMaster.restclient.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -41,6 +38,11 @@ public class WebshopUiApplication extends SpringBootServletInitializer {
     @Bean
     public CategoryCoreFallback categoryCoreFallback() {
         return new CategoryCoreFallback();
+    }
+
+    @Bean
+    public ProductCategoryCoreFallback productCategoryCoreFallback() {
+        return new ProductCategoryCoreFallback();
     }
 
     @Bean

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.util.List;
 
-@FeignClient(name = "api-gateway-service", decode404 = true)
+@FeignClient(name = "api-gateway-service", fallback = ProductCategoryCoreFallback.class, decode404 = true)
 public interface ProductCategoryCoreRestClient {
     @RequestMapping(value = "/product-category-service/product", method = RequestMethod.POST)
     ResponseEntity<Void> addProduct(@RequestBody Product product);
