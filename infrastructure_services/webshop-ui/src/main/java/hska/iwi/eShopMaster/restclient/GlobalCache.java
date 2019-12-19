@@ -58,7 +58,7 @@ public class GlobalCache {
     }
 
     public List<Category> getCategoryCache() {
-        return (List<Category>) this.categoryCache.values();
+        return new ArrayList<>(this.categoryCache.values());
     }
 
     public Product getProduct(Integer id) {

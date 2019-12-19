@@ -28,7 +28,7 @@ public class ProductManagerImpl implements ProductManager {
     }
 
     public List<Product> getProducts() {
-        List<Product> products = this.productClient.getAllProducts().getBody();
+        List<Product> products = this.productCategoryCoreRestClient.searchProduct("","0","1000000").getBody();
         GlobalCache cache = GlobalCache.getInstance();
         cache.setProductCache(products);
         return products;
